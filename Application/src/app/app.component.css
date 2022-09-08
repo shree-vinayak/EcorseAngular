@@ -1,0 +1,25 @@
+.header{
+    background-color: aqua;
+    height: 51px;
+    width: 100%;
+}
+.main{
+    width: 100%
+}
+.sidebar {
+    width: 30%;
+    background-color: antiquewhite;
+    height: 400px;
+    float: left
+}
+.dynamic {
+    width: 100%;
+    background-color: bisque;
+    height:400px;
+}
+.footer {
+    width: 100%;
+    background-color: crimson  ;
+    height: 70px;
+    text-align: center
+}
