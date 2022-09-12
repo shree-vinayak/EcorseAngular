@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Application';
+  
   constructor(private gen:GenericService,private router:Router) { }
 
   ngOnInit() {

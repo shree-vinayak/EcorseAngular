@@ -29,6 +29,24 @@ login(loginObj:any)
     return !(user === null)
   }
 
+  isUserAdmin() {
+    let role = sessionStorage.getItem('role');
+    if(role==='ADMIN')
+    {
+      return true;
+    }
+    return false;
+  }
+
+  isUserTeacher() {
+    let role = sessionStorage.getItem('role');
+    if(role==='TEACHER')
+    {
+      return true;
+    }
+    return false;
+  }
+
   logOut() {
     sessionStorage.removeItem('emailid')
     sessionStorage.removeItem('token')

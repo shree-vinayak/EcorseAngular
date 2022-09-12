@@ -1,10 +1,12 @@
 <div>
   <div *ngIf="gen.isUserLoggedIn()" class="header">
-    <app-header *ngIf="gen.isUserLoggedIn()"></app-header>
+    <app-header *ngIf="gen.isUserAdmin()"></app-header>
+    <app-teacher-header  *ngIf="gen.isUserTeacher()"></app-teacher-header>
   </div>
   <div class="main">
     <div *ngIf="gen.isUserLoggedIn()" class="sidebar">
-      <app-sidebar></app-sidebar>
+      <app-sidebar *ngIf="gen.isUserAdmin()"></app-sidebar>
+      <app-teacher-sidebar *ngIf="gen.isUserTeacher()"></app-teacher-sidebar>
     </div>
 
     <div class="dynamic">
@@ -14,7 +16,8 @@
 
   <div class="footer">
 
-    <app-footer></app-footer>
+    <app-footer *ngIf="gen.isUserAdmin()"></app-footer>
+    <app-teacher-footer *ngIf="gen.isUserTeacher()"></app-teacher-footer>
   </div>
 
 </div>
