@@ -1,0 +1,29 @@
+<div class="container-fluid mb-5">
+
+    <h1>Login Form</h1>
+    <form [formGroup]='login'>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="email" name="email" formControlName="username" class="form-control ">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="passoword" formControlName="passoword" class="form-control ">
+        </div>
+
+        <!-- <div class="form-group">
+            <label>Confirm Password</label>
+            <input [class.is-invalid]='login.errors?.misMatch' type="password" name="confirmpassword" formControlName="confirmpassword" class="form-control ">
+          <small class="text-danger" *ngIf='login.errors?.misMatch'>Confirm Password should match with password.</small>
+        </div> -->
+
+       
+        <button type="submit" (click)='loginapi()'[disabled]='login.invalid' class="btn btn-primary">Login</button>
+        <!-- <button type="submit" (click)='loginapi()' class="btn btn-primary">Submit</button> -->
+
+    </form>
+
+
+</div>
