@@ -25,4 +25,41 @@ export class GenserviceService {
   }
 
 
+  //USED FOR CLEAR SESSION 
+  logOut() {
+    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('token')
+  }
+//THIS METHOD IS USED TO CHECK USER ROLE IS ADMIN
+  isUserAdmin() {
+    let role = sessionStorage.getItem('role');
+    if(role==='ADMIN')
+    {
+      return true;
+    }
+    return false;
+  }
+//THIS METHOD IS USED TO CHECK USER ROLE IS TEACHER
+  isUserTeacher() {
+    let role = sessionStorage.getItem('role');
+    if(role==='TEACHER')
+    {
+      return true;
+    }
+    return false;
+  }
+
+
+  //THIS METHOD IS USED TO CHECK USER ROLE IS STUDENT
+  isUserStudent() {
+    let role = sessionStorage.getItem('role');
+    if(role==='STUDENT')
+    {
+      return true;
+    }
+    return false;
+  }
+
+
 }
