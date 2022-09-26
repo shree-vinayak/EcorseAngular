@@ -18,6 +18,16 @@ public class TeacherDetails {
 	@Column(name = "teachername")
 	private String teachername;
 	
+
+	@Column(name = "teacherrole")
+	private String teacherrole;
+	
+	@Column(name = "school")
+	private String school;
+	
+	@Column(name = "teacherage")
+	private String teacherage;
+	
 	@Column(name = "teachersubject")
 	private String teachersubject;
 	
@@ -38,6 +48,67 @@ public class TeacherDetails {
 	
 	@Column(name = "createdAt")
 	private LocalDate createdAt;
+	
+	@Column(name = "assignedClass1")
+	private String assignedClass1;
+	
+	@Column(name = "assignedClass2")
+	private String assignedClass2;
+	
+	@Column(name = "assignedClass3")
+	private String assignedClass3;
+	
+	
+	
+	
+
+	public String getTeacherrole() {
+		return teacherrole;
+	}
+
+	public void setTeacherrole(String teacherrole) {
+		this.teacherrole = teacherrole;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public String getTeacherage() {
+		return teacherage;
+	}
+
+	public void setTeacherage(String teacherage) {
+		this.teacherage = teacherage;
+	}
+
+	public String getAssignedClass1() {
+		return assignedClass1;
+	}
+
+	public void setAssignedClass1(String assignedClass1) {
+		this.assignedClass1 = assignedClass1;
+	}
+
+	public String getAssignedClass2() {
+		return assignedClass2;
+	}
+
+	public void setAssignedClass2(String assignedClass2) {
+		this.assignedClass2 = assignedClass2;
+	}
+
+	public String getAssignedClass3() {
+		return assignedClass3;
+	}
+
+	public void setAssignedClass3(String assignedClass3) {
+		this.assignedClass3 = assignedClass3;
+	}
 
 	public String getTeacherusername() {
 		return teacherusername;

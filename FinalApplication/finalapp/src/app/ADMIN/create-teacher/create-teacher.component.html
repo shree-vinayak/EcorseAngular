@@ -1,1 +1,84 @@
-<p>create-teacher works!</p>
+<form [formGroup]="teacherform">
+
+    <div>
+        <label>Teacher Username</label>
+        <input type="email" name="teacherusername" formControlName="teacherusername">
+    </div>
+
+
+    <div>
+        <label>Teacher Name</label>
+        <input type="text" name="teachername" formControlName="teachername">
+    </div>
+
+    <div>
+        <label>School</label>
+        <input type="text" name="school" formControlName="school">
+    </div>
+
+    <div>
+        <label>Age</label>
+        <input type="number" name="teacherage" formControlName="teacherage">
+    </div>
+
+    <div>
+        <label>Teacher Subject</label>
+        <select class="custom-select" name='teachersubject' formControlName="teachersubject">
+            <option value="">Select Subject </option>
+            <option value="PHYSICS">PHYSICS </option>
+            <option value="CHEMISTRY"> CHEMISTRY</option>
+            <option value="MATHS">MATHS </option>
+        </select>
+    </div>
+
+    <div>
+        <label>Teacher Mobile</label>
+        <input type="tel" name="teachermobile" formControlName="teachermobile">
+    </div>
+
+    <div>
+        <label>Teacher Adress</label>
+        <input type="text" name="teacheraddress" formControlName="teacheraddress">
+    </div>
+
+    <div>
+        <label>Teacher Experience</label>
+        <input type="number" name="teacherexp" formControlName="teacherexp">
+    </div>
+
+    <div>
+        <label>Teacher Password</label>
+        <input type="password" name="teacherpassword" formControlName="teacherpassword">
+    </div>
+
+    <div>
+        <label>Assigned Class 1</label>
+        <select class="custom-select" name='assignedClass1' formControlName="assignedClass1">
+            <option value="">Select Class 1 </option>
+            <option value="CLASS6">6 </option>
+            <option value="CLASS7">7</option>
+            <option value="CLASS8">8 </option>
+        </select>
+    </div>
+    <div>
+        <label>Assigned Class 2</label>
+        <select class="custom-select" name='assignedClass2' formControlName="assignedClass2">
+            <option value="">Select Class 2 </option>
+            <option value="CLASS6">6 </option>
+            <option value="CLASS7">7</option>
+            <option value="CLASS8">8 </option>
+        </select>
+    </div>
+    <div>
+        <label>Assigned Class 3</label>
+        <select class="custom-select" name='assignedClass3' formControlName="assignedClass3">
+            <option value="">Select Class 3 </option>
+            <option value="CLASS6">6 </option>
+            <option value="CLASS7">7</option>
+            <option value="CLASS8">8 </option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="submitTeacherDetails()">Submit</button>
+
+
+</form>
