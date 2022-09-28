@@ -1,0 +1,55 @@
+<form [formGroup]="studentform">
+
+    <div>
+        <label>Student Username</label>
+        <input type="email" name="studentusername" formControlName="studentusername">
+    </div>
+
+
+    <div>
+        <label>Student Name</label>
+        <input type="text" name="studentname" formControlName="studentname">
+    </div>
+
+    <div>
+        <label>Student Password</label>
+        <input type="password" name="studentpassword" formControlName="studentpassword">
+    </div>
+
+   
+
+    <div>
+        <label>Student Class </label>
+        <select class="custom-select" name='studentclass' formControlName="studentclass">
+            <option value="">Select Class 1 </option>
+            <option value="CLASS6">6 </option>
+            <option value="CLASS7">7</option>
+            <option value="CLASS8">8 </option>
+            <option value="CLASS9">9 </option>
+            <option value="CLASS10">10</option>
+            <option value="CLASS11">11 </option>
+            <option value="CLASS12">12 </option>
+
+        </select>
+    </div>
+
+    <div>
+        <label>Student Age</label>
+        <input type="number" name="studentage" formControlName="studentage">
+    </div>
+
+    <div>
+        <label>Student Mobile</label>
+        <input type="tel" name="studentmobile" formControlName="studentmobile">
+    </div>
+
+    <div>
+        <label>School</label>
+        <input type="text" name="studentschool" formControlName="studentschool">
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary" (click)="submitstudentDetails()">Submit</button>
+
+
+</form>

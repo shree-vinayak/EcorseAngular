@@ -20,6 +20,7 @@ import { TeacherHeaderComponent } from './TEACHER/teacher-header/teacher-header.
 import { TeacherSidebarComponent } from './TEACHER/teacher-sidebar/teacher-sidebar.component';
 import { TeacherFooterComponent } from './TEACHER/teacher-footer/teacher-footer.component';
 import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.component';
+import { CreateStudentComponent } from './ADMIN/create-student/create-student.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.co
     TeacherHeaderComponent,
     TeacherSidebarComponent,
     TeacherFooterComponent,
-    CreateTeacherComponent
+    CreateTeacherComponent,
+    CreateStudentComponent
   ],
   imports: [
     BrowserModule,
