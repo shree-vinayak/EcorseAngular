@@ -25,7 +25,7 @@ public class TeacherService {
 	
 
 	public Object save(TeacherDetails teacherdetils, HttpServletRequest request) {
-		teacherdetils.setCreatedAt(LocalDate.now());
+		teacherdetils.setCreatedat(LocalDate.now());
 		ResponseWrapper result = new ResponseWrapper();
 		if (Validate.validateToken(request)) {
 			Login logindetail= new Login(); 
@@ -33,7 +33,7 @@ public class TeacherService {
 			logindetail.setName(teacherdetils.getTeachername());
 			logindetail.setPassoword(teacherdetils.getTeacherpassword());
 			logindetail.setRole(teacherdetils.getTeacherrole());
-			logindetail.setUsername(teacherdetils.getTeacheraddress());
+			logindetail.setUsername(teacherdetils.getTeacherusername());
 			
 			try
 			{
@@ -41,7 +41,7 @@ public class TeacherService {
 				
 				if(logindbObj!=null)
 				{
-					teacherdetils.setCreatedAt(LocalDate.now());
+					teacherdetils.setCreatedat(LocalDate.now());
 				    TeacherDetails teacherdb= 	teacher_repo.save(teacherdetils);
 				    result.setMsg("TEACHER REGISTRATION SUCCESSFULLY");
 					result.setFlag(true);
@@ -68,7 +68,7 @@ public class TeacherService {
 			result.setData(null);
 		}
 
-		return null;
+		return result;
 	}
 
 }

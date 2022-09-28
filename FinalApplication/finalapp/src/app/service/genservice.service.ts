@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +20,6 @@ export class GenserviceService {
   //CHECK WHEATHER THE USER IS LOGIN OR NOT
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username');
-    console.log(!(user === null))
     return !(user === null)
   }
 
@@ -59,6 +58,13 @@ export class GenserviceService {
       return true;
     }
     return false;
+  }
+
+
+  saveTeachersDetails(teachersdata:any)
+  {
+      const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
+    return  this.http.post(environment.baseurl+"teacher/saveTeacher",teachersdata, {headers:headers})
   }
 
 

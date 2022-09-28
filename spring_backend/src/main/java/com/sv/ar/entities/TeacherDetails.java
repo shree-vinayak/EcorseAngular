@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TeacherDetails")
+@Table(name = "teacherdetails")
 public class TeacherDetails {
 
 	@Id
@@ -46,17 +46,17 @@ public class TeacherDetails {
 	@Column(name = "createby")
 	private String createby;
 	
-	@Column(name = "createdAt")
-	private LocalDate createdAt;
+	@Column(name = "createdat")
+	private LocalDate createdat;
 	
-	@Column(name = "assignedClass1")
-	private String assignedClass1;
+	@Column(name = "assignedclass1")
+	private String assignedclass1;
 	
-	@Column(name = "assignedClass2")
-	private String assignedClass2;
+	@Column(name = "assignedclass2")
+	private String assignedclass2;
 	
-	@Column(name = "assignedClass3")
-	private String assignedClass3;
+	@Column(name = "assignedclass3")
+	private String assignedclass3;
 	
 	
 	
@@ -86,30 +86,7 @@ public class TeacherDetails {
 		this.teacherage = teacherage;
 	}
 
-	public String getAssignedClass1() {
-		return assignedClass1;
-	}
-
-	public void setAssignedClass1(String assignedClass1) {
-		this.assignedClass1 = assignedClass1;
-	}
-
-	public String getAssignedClass2() {
-		return assignedClass2;
-	}
-
-	public void setAssignedClass2(String assignedClass2) {
-		this.assignedClass2 = assignedClass2;
-	}
-
-	public String getAssignedClass3() {
-		return assignedClass3;
-	}
-
-	public void setAssignedClass3(String assignedClass3) {
-		this.assignedClass3 = assignedClass3;
-	}
-
+	
 	public String getTeacherusername() {
 		return teacherusername;
 	}
@@ -174,12 +151,37 @@ public class TeacherDetails {
 		this.createby = createby;
 	}
 
-	public LocalDate getCreatedAt() {
-		return createdAt;
+	public LocalDate getCreatedat() {
+		return createdat;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
-		this.createdAt = createdAt;
+	public void setCreatedat(LocalDate createdat) {
+		this.createdat = createdat;
 	}
+
+	public String getAssignedclass1() {
+		return assignedclass1;
+	}
+
+	public void setAssignedclass1(String assignedclass1) {
+		this.assignedclass1 = assignedclass1;
+	}
+
+	public String getAssignedclass2() {
+		return assignedclass2;
+	}
+
+	public void setAssignedclass2(String assignedclass2) {
+		this.assignedclass2 = assignedclass2;
+	}
+
+	public String getAssignedclass3() {
+		return assignedclass3;
+	}
+
+	public void setAssignedclass3(String assignedclass3) {
+		this.assignedclass3 = assignedclass3;
+	}
+
 
 }

@@ -26,9 +26,9 @@ export class CreateTeacherComponent implements OnInit {
       teacherexp: ['', Validators.required],
       teacherpassword: ['', Validators.required],
       createby: [sessionStorage.getItem('username'), Validators.required],
-      assignedClass1: ['', Validators.required],
-      assignedClass2: ['', Validators.required],
-      assignedClass3: ['', Validators.required]
+      assignedclass1: ['', Validators.required],
+      assignedclass2: ['', Validators.required],
+      assignedclass3: ['', Validators.required]
     })
   }
 
@@ -36,7 +36,19 @@ export class CreateTeacherComponent implements OnInit {
     if (this.teacherform.invalid) {
       return;
     }
-    console.log("this.teacherform.value", this.teacherform.value);
+    // console.log("this.teacherform.value", this.teacherform.value);
+    this.genservice.saveTeachersDetails( this.teacherform.value).subscribe((response:any)=>
+    {
+        if(response.flag===true)
+        {
+          alert(response.msg);
+          this.teacherform.reset();
+        }
+        else{
+          alert(response.msg);
+         
+        }
+    })
   }
 
 }
