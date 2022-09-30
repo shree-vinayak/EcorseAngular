@@ -21,6 +21,7 @@ import { TeacherSidebarComponent } from './TEACHER/teacher-sidebar/teacher-sideb
 import { TeacherFooterComponent } from './TEACHER/teacher-footer/teacher-footer.component';
 import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.component';
 import { CreateStudentComponent } from './ADMIN/create-student/create-student.component';
+import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CreateStudentComponent } from './ADMIN/create-student/create-student.co
     TeacherSidebarComponent,
     TeacherFooterComponent,
     CreateTeacherComponent,
-    CreateStudentComponent
+    CreateStudentComponent,
+    AddMarksComponent
   ],
   imports: [
     BrowserModule,

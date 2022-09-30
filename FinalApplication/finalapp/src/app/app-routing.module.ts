@@ -5,6 +5,7 @@ import { CreateStudentComponent } from './ADMIN/create-student/create-student.co
 import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.component';
 import { LoginComponent } from './login/login.component';
 import { StudentHomeComponent } from './STUDENT/student-home/student-home.component';
+import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
 import { TeacherHomeComponent } from './TEACHER/teacher-home/teacher-home.component';
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
 
   //TEACHER ROLE
   { path: 'teacher-home', component: TeacherHomeComponent },
+  { path: 'add-marks', component: AddMarksComponent },
 
   //STUDENT ROLE
   { path: 'student-home', component: StudentHomeComponent },

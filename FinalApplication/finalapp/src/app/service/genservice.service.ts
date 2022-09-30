@@ -60,11 +60,25 @@ export class GenserviceService {
     return false;
   }
 
-
+//THIS APIS IS USED TO REGISETER TEACHERS DETAILS INSIDE THE DATABASE 
   saveTeachersDetails(teachersdata:any)
   {
       const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
     return  this.http.post(environment.baseurl+"teacher/saveTeacher",teachersdata, {headers:headers})
+  }
+
+  //THIS APIS IS USED TO REGISETER STUDENT DETAILS INSIDE THE DATABASE 
+  saveStudentDetails(studentData:any)
+  {
+     const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
+     return  this.http.post(environment.baseurl+"student-ops/savestudent",studentData, {headers:headers})
+  }
+
+
+  getStudentForEnterMarks()
+  {
+    const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
+    return this.http.get(environment.baseurl+"student-ops/getstudentforentermarks?teacherusername="+sessionStorage.getItem('username'), {headers:headers})
   }
 
 

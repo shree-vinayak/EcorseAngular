@@ -36,6 +36,18 @@ export class CreateStudentComponent implements OnInit {
     }
     console.log(this.studentform.value);
 
+    this.genservice.saveStudentDetails(this.studentform.value).subscribe((response:any)=>
+    {
+         if(response.flag===true)
+         {
+             alert(response.msg);
+             this.studentform.reset();
+         }
+         else{
+          alert(response.msg);
+         }
+    })
+
   }
 
 }
