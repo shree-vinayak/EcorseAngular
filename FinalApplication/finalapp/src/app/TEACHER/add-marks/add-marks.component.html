@@ -1,1 +1,49 @@
-<p>add-marks works!</p>
+<form [formGroup]="exampMarksForm" *ngIf="showForm">
+    <div>
+        <label>Student Username</label>
+        <input type="email" name="studentUsername" formControlName="studentUsername">
+    </div>
+
+    <div>
+        <label>Enter Marks</label>
+        <input type="number" name="marks" formControlName="marks">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="submitmarks()">Submit</button>
+</form>
+
+
+
+
+
+
+<p *ngIf="enterMarksResp==null"> No Students Are Available To Enter Marks</p>
+
+<table *ngIf="enterMarksResp">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Student Name</th>
+            <th>Enter Quaterly</th>
+            <th>Enter Halfyearly</th>
+            <th>Enter Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- [disabled]="data.quaterly===true?true:false" -->
+        <!-- {{data.quaterly}} -->
+        <tr *ngFor="let data of enterMarksResp;index as i">
+            <td>{{i+1}}</td>
+            <td>{{data.studentusername}}</td>
+            <td><button type="button" [disabled]="data.quaterly===true?false:true" (click)='entermarks("QUATERLY",data)'>
+                    Enter QUATERLY</button>
+            </td>
+            <td><button [disabled]="data.halfyearly===true?false:true" type="button"
+                    (click)='entermarks("HALFYERALY",data)'> Enter
+                    HALFYERALY</button></td>
+            <td><button [disabled]="data.finalexam===true?false:true" type="button" (click)='entermarks("FINAL",data)'>
+                    Enter FINAL</button></td>
+
+        </tr>
+    </tbody>
+
+</table>

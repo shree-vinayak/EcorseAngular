@@ -75,6 +75,7 @@ export class GenserviceService {
   }
 
 
+  //THIS APIS IS USED TO GET STUDENT WHOSE MARKS ARE NOT ENTERED
   getStudentForEnterMarks()
   {
     const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))

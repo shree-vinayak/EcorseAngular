@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { resetFakeAsyncZone } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenserviceService } from 'src/app/service/genservice.service';
 
 @Component({
@@ -12,17 +12,56 @@ export class AddMarksComponent implements OnInit {
 
   constructor(private genservice:GenserviceService,private fb:FormBuilder) { }
   enterMarksResp:any=null;
+
+  exampMarksForm:FormGroup=null;
+
+  showForm:boolean=false; 
+
   ngOnInit() {
 
     this.getStudentForEnterMarks();
   }
 
+
+
   getStudentForEnterMarks()
   {
      this.genservice.getStudentForEnterMarks().subscribe((response:any)=>
      {
-         this.enterMarksResp=response;
+       if(response.flag===true)
+       {
+         this.enterMarksResp=response.data;
+       }
+       else
+       {
+         alert(response.msg);
+       }
+        
      })
+  }
+
+  entermarks(examptype,studentObj:any)
+  {
+    this.exampMarksForm= this.fb.group({
+     studentUsername:[{value:studentObj.studentusername,disabled:true},Validators.required],
+     marks:[0,Validators.required],
+     examptype:[examptype,Validators.required],
+     enteredby:[sessionStorage.getItem('username')]
+    }); 
+    this.showForm=true; 
+  }
+
+  submitmarks()
+  {
+      if(this.exampMarksForm.invalid)
+      {
+        return ;
+      }
+      console.log(this.exampMarksForm.value)
+      this.showForm=false; 
+      this.exampMarksForm.reset();
+      this.getStudentForEnterMarks();
+
   }
 
 }

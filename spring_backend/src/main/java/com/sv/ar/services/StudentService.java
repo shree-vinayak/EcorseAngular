@@ -3,7 +3,9 @@ package com.sv.ar.services;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +20,7 @@ import com.sv.ar.repositories.Login_repo;
 import com.sv.ar.repositories.MarksTable_repo;
 import com.sv.ar.repositories.Student_repo;
 import com.sv.ar.repositories.Teacher_repo;
+import com.sv.ar.responseDTO.MarksResponseDto;
 import com.sv.ar.utilities.ExamType;
 import com.sv.ar.utilities.ResponseWrapper;
 import com.sv.ar.utilities.Validate;
@@ -124,9 +127,43 @@ public class StudentService {
 		    	
 		    	if(!studentfromdb.isEmpty())
 		    	{
-		    		result.setMsg("GET DATA SUCCESSFULLY");
-					result.setFlag(true);
-					result.setData(studentfromdb);
+		    		 List<String> studentUsernameList= new ArrayList<>();
+	    			 for(StudentDetails studentobj:studentfromdb)
+	    			 {
+	    				 studentUsernameList.add(studentobj.getStudentusername());
+	    			 }
+		    		
+	    			 Map<String,MarksResponseDto > mapobj= new HashMap<>(); 
+		    		if(teacherObj.getTeachersubject().equals("PHYSICS"))
+		    		{
+		    			//Get the data where subject1 marks is null or empty 
+		    			List<MarksTable> marsksdataList= marksTable_repo.getStudentForSubject1(studentUsernameList);
+		    			processMarksTableData(marsksdataList,mapobj);
+		    		}
+		    		else if(teacherObj.getTeachersubject().equals("CHEMISTRY"))
+		    		{
+		    			List<MarksTable> marsksdataList= marksTable_repo.getStudentForSubject2(studentUsernameList);
+		    			processMarksTableData(marsksdataList,mapobj);
+		    		}
+		    		else if(teacherObj.getTeachersubject().equals("MATHS"))
+		    		{
+		    			List<MarksTable> marsksdataList= marksTable_repo.getStudentForSubject3(studentUsernameList);
+		    			processMarksTableData(marsksdataList,mapobj);
+		    		}
+		    		
+		    		List<MarksResponseDto> marksResponseDtoList = new ArrayList<>(mapobj.values());
+		    		if(!marksResponseDtoList.isEmpty())
+		    		{
+		    			result.setMsg("GET DATA SUCCESSFULLY");
+						result.setFlag(true);
+						result.setData(marksResponseDtoList);
+		    		}
+		    		else
+		    		{
+		    			result.setMsg("NO DATA FOUND FOR TEACHER" +teacherusername.toUpperCase());
+						result.setFlag(false);
+						result.setData(null);
+		    		}
 		    	}
 		    	else
 		    	{
@@ -142,6 +179,63 @@ public class StudentService {
 				result.setData(null);
 		    }
 		return result;
+	}
+	
+	
+	public void updatemarks()
+	{
+//		fetchthe teacherObject
+//		check the teacher subject
+//		if physics==> update  marsktable set subject1marsk=(:marks)  where studentusername=(:studentusername) and examtype=(:examptype)
+//		else if CHEMISTRY	==> update  marsktable set subject2marsk=(:marks)  where studentusername=(:studentusername) and examtype=(:examptype)
+//	else if  MATHS	==> update  marsktable set subject3marsk=(:marks)  where studentusername=(:studentusername) and examtype=(:examptype)
+	}
+	
+	private void processMarksTableData(List<MarksTable> marsksdataList,Map<String,MarksResponseDto > mapobj)
+	{
+		
+		for(MarksTable marksdbObj:marsksdataList)
+		{
+			if(mapobj.containsKey(marksdbObj.getStudentusername()))
+			{
+				MarksResponseDto dto= mapobj.get(marksdbObj.getStudentusername()); 
+				if(marksdbObj.getExamtype().equals(ExamType.halfyearly))
+				{
+					dto.setHalfyearly(true);
+				}
+				else if (marksdbObj.getExamtype().equals(ExamType.quaterly))
+				{
+					dto.setQuaterly(true);
+				}
+				else if(marksdbObj.getExamtype().equals(ExamType.finalEXM))
+				{
+					dto.setFinalexam(true);
+				}
+			}
+			else
+			{
+				MarksResponseDto dto= new MarksResponseDto();
+				dto.setStudentusername(marksdbObj.getStudentusername());
+				if(marksdbObj.getExamtype().equals(ExamType.halfyearly))
+				{
+					dto.setHalfyearly(true);
+				}
+				else if (marksdbObj.getExamtype().equals(ExamType.quaterly))
+				{
+					dto.setQuaterly(true);
+				}
+				else if(marksdbObj.getExamtype().equals(ExamType.finalEXM))
+				{
+					dto.setFinalexam(true);
+				}
+				
+				mapobj.put(marksdbObj.getStudentusername(), dto);
+				
+			}
+			
+		}
+		
+		
 	}
 
 }
