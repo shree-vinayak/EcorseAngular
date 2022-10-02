@@ -29,25 +29,33 @@ export class CreateTeacherComponent implements OnInit {
       assignedclass1: ['', Validators.required],
       assignedclass2: ['', Validators.required],
       assignedclass3: ['', Validators.required]
-    })
+    });
   }
 
   submitTeacherDetails() {
+    console.log(this.teacherform.value)
+    console.log(this.teacherform)
+
+    this.teacherform.patchValue({
+      teacherrole:'TEACHER' ,
+      createby:sessionStorage.getItem('username') 
+    })
+
+    console.log("after value patche", this.teacherform);
     if (this.teacherform.invalid) {
       return;
     }
+
     // console.log("this.teacherform.value", this.teacherform.value);
-    this.genservice.saveTeachersDetails( this.teacherform.value).subscribe((response:any)=>
-    {
-        if(response.flag===true)
-        {
-          alert(response.msg);
-          this.teacherform.reset();
-        }
-        else{
-          alert(response.msg);
-         
-        }
+    this.genservice.saveTeachersDetails(this.teacherform.value).subscribe((response: any) => {
+      if (response.flag === true) {
+        alert(response.msg);
+        this.teacherform.reset();
+      }
+      else {
+        alert(response.msg);
+
+      }
     })
   }
 

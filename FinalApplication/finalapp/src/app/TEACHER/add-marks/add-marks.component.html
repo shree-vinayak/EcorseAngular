@@ -1,7 +1,7 @@
 <form [formGroup]="exampMarksForm" *ngIf="showForm">
     <div>
         <label>Student Username</label>
-        <input type="email" name="studentUsername" formControlName="studentUsername">
+        <input type="email" name="studentusername" formControlName="studentusername">
     </div>
 
     <div>
@@ -34,13 +34,15 @@
         <tr *ngFor="let data of enterMarksResp;index as i">
             <td>{{i+1}}</td>
             <td>{{data.studentusername}}</td>
-            <td><button type="button" [disabled]="data.quaterly===true?false:true" (click)='entermarks("QUATERLY",data)'>
+            <td><button type="button" [disabled]="data.quaterly===true?false:true"
+                    (click)='entermarks("QUATERLY",data)'>
                     Enter QUATERLY</button>
             </td>
             <td><button [disabled]="data.halfyearly===true?false:true" type="button"
                     (click)='entermarks("HALFYERALY",data)'> Enter
                     HALFYERALY</button></td>
-            <td><button [disabled]="data.finalexam===true?false:true" type="button" (click)='entermarks("FINAL",data)'>
+            <td><button [disabled]="data.finalexam===true?false:true" type="button" 
+                   (click)='entermarks("FINAL",data)'>
                     Enter FINAL</button></td>
 
         </tr>

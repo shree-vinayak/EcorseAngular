@@ -1,4 +1,4 @@
-package com.sv.ar.responseDTO;
+package com.sv.ar.DTOs;
 
 public class MarksResponseDto {
 	private String studentusername;

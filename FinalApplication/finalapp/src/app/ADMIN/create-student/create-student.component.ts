@@ -31,6 +31,13 @@ export class CreateStudentComponent implements OnInit {
 
 
   submitstudentDetails() {
+    console.log('before patch',this.studentform);
+    this.studentform.patchValue({
+      role:'STUDENT',
+      createdby: sessionStorage.getItem("username")
+    }); 
+    console.log('after patch',this.studentform);
+
     if (this.studentform.invalid) {
       return;
     }

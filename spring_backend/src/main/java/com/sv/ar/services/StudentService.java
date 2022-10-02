@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sv.ar.DTOs.MarksResponseDto;
 import com.sv.ar.entities.Login;
 import com.sv.ar.entities.MarksTable;
 import com.sv.ar.entities.StudentDetails;
@@ -20,7 +21,6 @@ import com.sv.ar.repositories.Login_repo;
 import com.sv.ar.repositories.MarksTable_repo;
 import com.sv.ar.repositories.Student_repo;
 import com.sv.ar.repositories.Teacher_repo;
-import com.sv.ar.responseDTO.MarksResponseDto;
 import com.sv.ar.utilities.ExamType;
 import com.sv.ar.utilities.ResponseWrapper;
 import com.sv.ar.utilities.Validate;

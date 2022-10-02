@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RecursiveVisitor } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -82,5 +83,11 @@ export class GenserviceService {
     return this.http.get(environment.baseurl+"student-ops/getstudentforentermarks?teacherusername="+sessionStorage.getItem('username'), {headers:headers})
   }
 
+
+  updateMarks(marksObj:any)
+  {
+    const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
+     return  this.http.post(environment.baseurl+"teacher/update-marks",marksObj, {headers:headers})
+  }
 
 }

@@ -10,12 +10,12 @@ import { GenserviceService } from 'src/app/service/genservice.service';
 })
 export class AddMarksComponent implements OnInit {
 
-  constructor(private genservice:GenserviceService,private fb:FormBuilder) { }
-  enterMarksResp:any=null;
+  constructor(private genservice: GenserviceService, private fb: FormBuilder) { }
+  enterMarksResp: any = null;
 
-  exampMarksForm:FormGroup=null;
+  exampMarksForm: FormGroup = null;
 
-  showForm:boolean=false; 
+  showForm: boolean = false;
 
   ngOnInit() {
 
@@ -24,44 +24,49 @@ export class AddMarksComponent implements OnInit {
 
 
 
-  getStudentForEnterMarks()
-  {
-     this.genservice.getStudentForEnterMarks().subscribe((response:any)=>
-     {
-       if(response.flag===true)
-       {
-         this.enterMarksResp=response.data;
-       }
-       else
-       {
-         alert(response.msg);
-       }
-        
-     })
-  }
-
-  entermarks(examptype,studentObj:any)
-  {
-    this.exampMarksForm= this.fb.group({
-     studentUsername:[{value:studentObj.studentusername,disabled:true},Validators.required],
-     marks:[0,Validators.required],
-     examptype:[examptype,Validators.required],
-     enteredby:[sessionStorage.getItem('username')]
-    }); 
-    this.showForm=true; 
-  }
-
-  submitmarks()
-  {
-      if(this.exampMarksForm.invalid)
-      {
-        return ;
+  getStudentForEnterMarks() {
+    this.enterMarksResp=null;
+    this.genservice.getStudentForEnterMarks().subscribe((response: any) => {
+      if (response.flag === true) {
+        this.enterMarksResp = response.data;
       }
-      console.log(this.exampMarksForm.value)
-      this.showForm=false; 
-      this.exampMarksForm.reset();
-      this.getStudentForEnterMarks();
+      else {
+        alert(response.msg);
+        this.enterMarksResp=null;
+      }
 
+    })
+  }
+
+  entermarks(examptype, studentObj: any) {
+    this.exampMarksForm = this.fb.group({
+      studentusername: [{ value: studentObj.studentusername, disabled: true }, Validators.required],
+      marks: [0, Validators.required],
+      examptype: [examptype, Validators.required],
+      enteredby: [sessionStorage.getItem('username')]
+    });
+    this.showForm = true;
+  }
+
+  submitmarks() {
+   debugger
+    if (this.exampMarksForm.invalid) {
+      return;
+    }
+    var marksObj:any= this.exampMarksForm.getRawValue();
+    console.log(this.exampMarksForm.getRawValue())
+    this.genservice.updateMarks(marksObj).subscribe((respons: any) => {
+      debugger
+      if (respons.flag === true) {
+        this.showForm = false;
+        this.exampMarksForm.reset();
+      }
+      else {
+        alert(respons.msg);
+
+      }
+      this.getStudentForEnterMarks();
+    })
   }
 
 }
