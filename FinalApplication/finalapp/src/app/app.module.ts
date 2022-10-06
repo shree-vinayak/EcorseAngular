@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GenserviceService } from './service/genservice.service';
 import { AdminHomeComponent } from './ADMIN/admin-home/admin-home.component';
 import { TeacherHomeComponent } from './TEACHER/teacher-home/teacher-home.component';
@@ -22,6 +22,8 @@ import { TeacherFooterComponent } from './TEACHER/teacher-footer/teacher-footer.
 import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.component';
 import { CreateStudentComponent } from './ADMIN/create-student/create-student.component';
 import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
+import { MyInterceptorService } from './service/my-interceptor.service';
+import { ShowResultComponent } from './STUDENT/show-result/show-result.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
     TeacherFooterComponent,
     CreateTeacherComponent,
     CreateStudentComponent,
-    AddMarksComponent
+    AddMarksComponent,
+    ShowResultComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,9 @@ import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [GenserviceService],
+  providers: [GenserviceService,
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

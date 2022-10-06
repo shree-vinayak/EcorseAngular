@@ -1,0 +1,21 @@
+<p style="text-align:center; ">View Result And Download Result</p>
+
+<table>
+    <tbody>
+        <tr>
+            <td><button class="btn btn-success" (click)="getMyResult('QUATERLY')">view Quaterly </button></td>
+            <td><button class="btn btn-warning" (click)="getMyResult('HALFYERALY')">view halfyearly </button></td>
+            <td><button class="btn btn-danger" (click)="getMyResult('FINAL')">view final </button></td>
+        </tr>
+    </tbody>
+
+</table>
+
+<p *ngIf="!showResult"> Click on above given buttons to fetch result</p>
+
+<table *ngIf="showResult">
+   <p  style="text-align:center; ">{{exampType}} Result</p>
+   <tr>
+
+   </tr>
+</table>

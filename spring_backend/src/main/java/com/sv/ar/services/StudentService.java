@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sv.ar.DTOs.ExamResultRespDto;
+import com.sv.ar.DTOs.ExamResultRespDtoWrapper;
 import com.sv.ar.DTOs.MarksResponseDto;
 import com.sv.ar.entities.Login;
 import com.sv.ar.entities.MarksTable;
@@ -236,6 +238,77 @@ public class StudentService {
 		}
 		
 		
+	}
+
+
+	public Object getResultForExamFromService(String studentusername, String examtype, HttpServletRequest request) {
+		ResponseWrapper result = new ResponseWrapper();
+		if (Validate.validateToken(request)) {
+			
+			boolean status=false; 
+			
+			
+		    StudentDetails studentDetails= student_repo.findById(studentusername).get();
+		    ExamResultRespDtoWrapper  examresultrespdtowrapper= new ExamResultRespDtoWrapper();
+		    examresultrespdtowrapper.setAge(studentDetails.getStudentage());
+		    examresultrespdtowrapper.setClassname(studentDetails.getStudentclass());
+		    examresultrespdtowrapper.setExamtype(examtype);
+		    examresultrespdtowrapper.setName(studentDetails.getStudentname());
+		    examresultrespdtowrapper.setRollno(studentDetails.getStudentusername());
+		    List<ExamResultRespDto> examlist= new ArrayList<>(); 
+		    List<String>failsInList=  new ArrayList<>();
+           MarksTable marksTable=   marksTable_repo.getResultForExamtype(studentusername,examtype);
+           ExamResultRespDto subject1Obj=new ExamResultRespDto(); 
+           subject1Obj.setExamName(marksTable.getSubject1());
+           subject1Obj.setTotalmarks("100");
+           subject1Obj.setMarks(marksTable.getSubject1marks()==null?"MARKS NA":marksTable.getSubject1marks());
+           examlist.add(subject1Obj);
+           if(Float.parseFloat(marksTable.getSubject1marks())<33f)
+           {
+        	   status=true;
+        	   failsInList.add("FAILED IN "+marksTable.getSubject1());
+           }
+           
+           ExamResultRespDto subject2Obj=new ExamResultRespDto(); 
+           subject2Obj.setExamName(marksTable.getSubject2());
+           subject2Obj.setTotalmarks("100");
+           subject2Obj.setMarks(marksTable.getSubject2marks()==null?"MARKS NA":marksTable.getSubject2marks());
+           examlist.add(subject2Obj);
+           if(Float.parseFloat(marksTable.getSubject2marks())<33f)
+           {
+        	   status=true;
+        	   failsInList.add("FAILED IN "+marksTable.getSubject2());
+           }
+           
+           ExamResultRespDto subject3Obj=new ExamResultRespDto(); 
+           subject3Obj.setExamName(marksTable.getSubject3());
+           subject3Obj.setTotalmarks("100");
+           subject3Obj.setMarks(marksTable.getSubject3marks()==null?"MARKS NA":marksTable.getSubject3marks());
+           examlist.add(subject3Obj);
+           if(Float.parseFloat(marksTable.getSubject3marks())<33f)
+           {
+        	   status=true;
+        	   failsInList.add("FAILED IN "+marksTable.getSubject3());
+           }
+           
+           examresultrespdtowrapper.setExamResultRespDto(examlist);
+           examresultrespdtowrapper.setStatus(status==true?"FAIL":"PASS");
+           if(!failsInList.isEmpty())
+           {
+        	   examresultrespdtowrapper.setFailsIn(failsInList);
+           }
+           
+            result.setMsg("Getting Result Successfully");
+			result.setFlag(true);
+			result.setData(examresultrespdtowrapper);
+           
+          
+		} else {
+			result.setMsg("Not Authorized");
+			result.setFlag(false);
+			result.setData(null);
+		}
+		return result;
 	}
 
 }

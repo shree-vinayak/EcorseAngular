@@ -4,6 +4,7 @@ import { AdminHomeComponent } from './ADMIN/admin-home/admin-home.component';
 import { CreateStudentComponent } from './ADMIN/create-student/create-student.component';
 import { CreateTeacherComponent } from './ADMIN/create-teacher/create-teacher.component';
 import { LoginComponent } from './login/login.component';
+import { ShowResultComponent } from './STUDENT/show-result/show-result.component';
 import { StudentHomeComponent } from './STUDENT/student-home/student-home.component';
 import { AddMarksComponent } from './TEACHER/add-marks/add-marks.component';
 import { TeacherHomeComponent } from './TEACHER/teacher-home/teacher-home.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
 
   //STUDENT ROLE
   { path: 'student-home', component: StudentHomeComponent },
+  { path: 'show-result', component: ShowResultComponent }
 
 ];
 

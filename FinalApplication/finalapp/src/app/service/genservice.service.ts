@@ -8,13 +8,12 @@ import { environment } from 'src/environments/environment';
 })
 export class GenserviceService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   //LOGIN API
-  login(loginFormValue:any)
-  {
-    return this .http.post(environment.baseurl+"login-ops/login",loginFormValue);
+  login(loginFormValue: any) {
+    return this.http.post(environment.baseurl + "login-ops/login", loginFormValue);
   }
 
 
@@ -31,20 +30,18 @@ export class GenserviceService {
     sessionStorage.removeItem('role')
     sessionStorage.removeItem('token')
   }
-//THIS METHOD IS USED TO CHECK USER ROLE IS ADMIN
+  //THIS METHOD IS USED TO CHECK USER ROLE IS ADMIN
   isUserAdmin() {
     let role = sessionStorage.getItem('role');
-    if(role==='ADMIN')
-    {
+    if (role === 'ADMIN') {
       return true;
     }
     return false;
   }
-//THIS METHOD IS USED TO CHECK USER ROLE IS TEACHER
+  //THIS METHOD IS USED TO CHECK USER ROLE IS TEACHER
   isUserTeacher() {
     let role = sessionStorage.getItem('role');
-    if(role==='TEACHER')
-    {
+    if (role === 'TEACHER') {
       return true;
     }
     return false;
@@ -54,40 +51,31 @@ export class GenserviceService {
   //THIS METHOD IS USED TO CHECK USER ROLE IS STUDENT
   isUserStudent() {
     let role = sessionStorage.getItem('role');
-    if(role==='STUDENT')
-    {
+    if (role === 'STUDENT') {
       return true;
     }
     return false;
   }
 
-//THIS APIS IS USED TO REGISETER TEACHERS DETAILS INSIDE THE DATABASE 
-  saveTeachersDetails(teachersdata:any)
-  {
-      const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
-    return  this.http.post(environment.baseurl+"teacher/saveTeacher",teachersdata, {headers:headers})
+  //THIS APIS IS USED TO REGISETER TEACHERS DETAILS INSIDE THE DATABASE 
+  saveTeachersDetails(teachersdata: any) {
+    return this.http.post(environment.baseurl + "teacher/saveTeacher", teachersdata)
   }
 
   //THIS APIS IS USED TO REGISETER STUDENT DETAILS INSIDE THE DATABASE 
-  saveStudentDetails(studentData:any)
-  {
-     const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
-     return  this.http.post(environment.baseurl+"student-ops/savestudent",studentData, {headers:headers})
+  saveStudentDetails(studentData: any) {
+    return this.http.post(environment.baseurl + "student-ops/savestudent", studentData)
   }
 
 
   //THIS APIS IS USED TO GET STUDENT WHOSE MARKS ARE NOT ENTERED
-  getStudentForEnterMarks()
-  {
-    const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
-    return this.http.get(environment.baseurl+"student-ops/getstudentforentermarks?teacherusername="+sessionStorage.getItem('username'), {headers:headers})
+  getStudentForEnterMarks() {
+    return this.http.get(environment.baseurl + "student-ops/getstudentforentermarks?teacherusername=" + sessionStorage.getItem('username'))
   }
 
 
-  updateMarks(marksObj:any)
-  {
-    const headers= new HttpHeaders().set('Authorization', sessionStorage.getItem('token'))
-     return  this.http.post(environment.baseurl+"teacher/update-marks",marksObj, {headers:headers})
+  updateMarks(marksObj: any) {
+    return this.http.post(environment.baseurl + "teacher/update-marks", marksObj)
   }
 
 }

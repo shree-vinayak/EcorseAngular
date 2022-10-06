@@ -41,5 +41,9 @@ public interface MarksTable_repo extends JpaRepository<MarksTable, MarksId> {
 	@Modifying
 	@Query(value=" update  markstable m  set m.subject3marks=(:marks) where m.studentusername = (:studentUsername) and m.examtype=(:examptype)",nativeQuery = true)
 	int updateMarksForSubject3(String studentUsername, String marks, String examptype);
+ 
+	
+	@Query(value="select * from markstable m where  m.studentusername=(:studentusername) and m.examtype=(:examtype)")
+	MarksTable getResultForExamtype(String studentusername, String examtype);
 
 }

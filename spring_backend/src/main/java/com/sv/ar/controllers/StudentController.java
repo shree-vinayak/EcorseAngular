@@ -49,5 +49,20 @@ public class StudentController {
 		
 	}
 	
+	@GetMapping("/getresultforexam")
+	public Object getResultForExam(@RequestParam("studentusername") String studentusername,
+			@RequestParam("examtype") String examtype,
+			HttpServletRequest request)
+	{
+		
+		
+     	Object result=	studentService.getResultForExamFromService(studentusername,examtype,request);
+		
+		return result; 
+		
+	}
+	
+	
+	
 	
 }
